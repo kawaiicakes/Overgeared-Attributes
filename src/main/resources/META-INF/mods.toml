@@ -1,0 +1,32 @@
+modLoader = "javafml"
+issueTrackerURL = "https://github.com/kawaiicakes/OvergearedAttributes/issues"
+loaderVersion = "${loader_version_range}"
+license = "${mod_license}"
+
+[[mods]]
+modId = "overgeared_attributes"
+version = "${mod_version}"
+displayName = "Overgeared Attributes"
+authors = "${mod_authors}"
+description = "${mod_description}"
+
+[[dependencies.overgeared_attributes]]
+modId = "forge"
+mandatory = true
+versionRange = "${forge_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.overgeared_attributes]]
+modId = "minecraft"
+mandatory = true
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.overgeared_attributes]]
+modId = "overgeared"
+mandatory = true
+versionRange = "[1.4.16,)"
+ordering = "NONE"
+side = "BOTH"
