@@ -14,6 +14,7 @@ import net.minecraftforge.registries.RegistryObject;
 public final class OvergearedAttributes {
     public static final String MOD_ID = "overgeared_attributes";
 
+    // TODO - add lerp to arrow in minigame
     public OvergearedAttributes() {
         MinecraftForge.EVENT_BUS.register(this);
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -29,19 +30,19 @@ public final class OvergearedAttributes {
         "smithing.difficulty",
             () -> new RangedAttribute(
                     "attribute.name.smithing.difficulty",
-                    1.0D,
                     0.0D,
-                    5.0D
+                    0.0D,
+                    50.0D
             )
     );
 
-    public static final RegistryObject<Attribute> SMITHING_QUALITY = ATTRIBUTES.register(
-            "smithing.quality",
+    public static final RegistryObject<Attribute> SMITHING_BONUS = ATTRIBUTES.register(
+            "smithing.bonus",
             () -> new RangedAttribute(
-                    "attribute.name.smithing.quality",
-                    1,
-                    1,
-                    10
+                    "attribute.name.smithing.bonus",
+                    0.0D,
+                    0.0D,
+                    100.0D
             )
     );
 }
