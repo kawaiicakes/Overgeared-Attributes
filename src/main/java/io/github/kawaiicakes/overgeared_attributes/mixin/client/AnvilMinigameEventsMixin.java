@@ -30,12 +30,13 @@ public abstract class AnvilMinigameEventsMixin {
 
     @Inject(
             method = "setupForQuality",
-            at = @At("RETURN")
+            at = @At("TAIL")
     )
     private static void injectAttributes(String quality, CallbackInfo ci) {
         // FIXME - attributes aren't updating
         assert Minecraft.getInstance().player != null;
-        overgeared_attributes_1_20_1_forge_template$bonusHits = (int) Minecraft.getInstance().player.getAttributeValue(SMITHING_BONUS.get());
+        overgeared_attributes_1_20_1_forge_template$bonusHits = 3;
+        //overgeared_attributes_1_20_1_forge_template$bonusHits = (int) Minecraft.getInstance().player.getAttributeValue(SMITHING_BONUS.get());
         // final float modifierValue = (float) Minecraft.getInstance().player.getAttributeValue(SMITHING_DIFFICULTY.get());
         // debug only
         final int modifierValue = 20;
@@ -52,7 +53,7 @@ public abstract class AnvilMinigameEventsMixin {
                 && (arrowPosition < (float)perfectZoneStart || arrowPosition > (float)perfectZoneEnd)
         ) {
             overgeared_attributes_1_20_1_forge_template$bonusHits--;
-            return "poor";
+            return "skip";
         } else {
             return original.call();
         }
