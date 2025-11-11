@@ -15,7 +15,6 @@ import java.util.Objects;
 import static io.github.kawaiicakes.overgeared_attributes.OvergearedAttributes.LOGGER;
 import static io.github.kawaiicakes.overgeared_attributes.OvergearedAttributes.SMITHING_BONUS;
 
-// FIXME: something somewhere is causing attributes to not update.
 @Mixin(PacketSendCounterC2SPacket.class)
 public abstract class PacketSendCounterC2SPacketMixin {
     @WrapOperation(
