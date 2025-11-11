@@ -22,6 +22,7 @@ public abstract class AbstractSmithingAnvilBlockEntityMixin implements BonusHitC
 
     @Unique
     private boolean overgeared_attributes_1_20_1_forge_template$updateFreeHits(double hits) {
+        // FIXME: set up bonus hits on initiation of minigame so the change from 0 to 3 does not cause this to return true. this is what's causing the need for an extra hit
         final boolean toReturn = this.overgeared_attributes_1_20_1_forge_template$bonusHits != hits;
         LOGGER.info("Old: {}  New: {}", this.overgeared_attributes_1_20_1_forge_template$bonusHits, hits);
         if (toReturn) {

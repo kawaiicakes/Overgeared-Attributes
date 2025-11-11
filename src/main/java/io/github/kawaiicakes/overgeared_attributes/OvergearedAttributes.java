@@ -36,7 +36,7 @@ public final class OvergearedAttributes {
                     0.0D,
                     0.0D,
                     50.0D
-            )
+            ).setSyncable(true)
     );
 
     public static final RegistryObject<Attribute> SMITHING_BONUS = ATTRIBUTES.register(
@@ -46,6 +46,6 @@ public final class OvergearedAttributes {
                     0.0D,
                     0.0D,
                     100.0D
-            )
+            ).setSyncable(true)
     );
 }

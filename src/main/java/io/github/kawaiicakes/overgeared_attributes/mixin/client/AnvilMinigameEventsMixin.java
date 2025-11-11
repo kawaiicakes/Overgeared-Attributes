@@ -50,7 +50,7 @@ public abstract class AnvilMinigameEventsMixin {
                 && (arrowPosition < (float)perfectZoneStart || arrowPosition > (float)perfectZoneEnd)
         ) {
             LOGGER.info("Clientside free hits: {}", overgeared_attributes_1_20_1_forge_template$bonusHits);
-            overgeared_attributes_1_20_1_forge_template$bonusHits--; // must be done clientside since there is no guarantee the server has updated the attribute yet
+            overgeared_attributes_1_20_1_forge_template$bonusHits--; // must be done clientside since there is no guarantee the server has updated the attribute yet? Is this true?
             return "skip";
         } else {
             return original.call();
