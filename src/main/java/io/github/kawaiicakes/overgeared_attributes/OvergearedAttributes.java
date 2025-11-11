@@ -1,5 +1,6 @@
 package io.github.kawaiicakes.overgeared_attributes;
 
+import com.mojang.logging.LogUtils;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraftforge.common.MinecraftForge;
@@ -9,9 +10,11 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.slf4j.Logger;
 
 @Mod(OvergearedAttributes.MOD_ID)
 public final class OvergearedAttributes {
+    public static final Logger LOGGER = LogUtils.getLogger();
     public static final String MOD_ID = "overgeared_attributes";
 
     // TODO - add lerp to arrow in minigame

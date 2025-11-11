@@ -11,6 +11,11 @@ import net.stirdrem.overgeared.event.ModEvents;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+import java.util.Objects;
+
+import static io.github.kawaiicakes.overgeared_attributes.OvergearedAttributes.LOGGER;
+import static io.github.kawaiicakes.overgeared_attributes.OvergearedAttributes.SMITHING_BONUS;
+
 @Mixin(ModEvents.class)
 public class ModEventsMixin {
     @WrapOperation(
@@ -21,11 +26,10 @@ public class ModEventsMixin {
             AbstractSmithingAnvilBlockEntity instance, int progress, Operation<Void> original,
             @Local(argsOnly = true) LocalRef<ServerPlayer> player
     ) {
+        LOGGER.info("Resetting free hits for player");
         //noinspection RedundantCast
-        ((BonusHitCounter) ((Object) instance)).overgeared_attributes_1_20_1_forge_template$setRemainingBonusHits(
-                // (int) player.get().getAttributeValue(SMITHING_BONUS.get())
-                3
-        );
+        ((BonusHitCounter) ((Object) instance)).overgeared_attributes_1_20_1_forge_template$setRemainingBonusHits(0);
+        Objects.requireNonNull(player.get().getAttribute(SMITHING_BONUS.get())).removeModifiers();
         original.call(instance, progress);
     }
 
@@ -37,11 +41,10 @@ public class ModEventsMixin {
             AbstractSmithingAnvilBlockEntity instance, int progress, Operation<Void> original,
             @Local(argsOnly = true) LocalRef<ServerPlayer> player
     ) {
+        LOGGER.info("Resetting free hits for player pos");
         //noinspection RedundantCast
-        ((BonusHitCounter) ((Object) instance)).overgeared_attributes_1_20_1_forge_template$setRemainingBonusHits(
-                // (int) player.get().getAttributeValue(SMITHING_BONUS.get())
-                3
-        );
+        ((BonusHitCounter) ((Object) instance)).overgeared_attributes_1_20_1_forge_template$setRemainingBonusHits(0);
+        Objects.requireNonNull(player.get().getAttribute(SMITHING_BONUS.get())).removeModifiers();
         original.call(instance, progress);
     }
 
@@ -52,6 +55,7 @@ public class ModEventsMixin {
     private static void resetFreeHitsForAnvil(
             AbstractSmithingAnvilBlockEntity instance, int progress, Operation<Void> original
     ) {
+        LOGGER.info("Resetting free hits for anvil");
         //noinspection RedundantCast
         ((BonusHitCounter) ((Object) instance)).overgeared_attributes_1_20_1_forge_template$setRemainingBonusHits(0);
         original.call(instance, progress);
