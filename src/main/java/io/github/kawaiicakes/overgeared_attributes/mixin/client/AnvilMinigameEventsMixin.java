@@ -134,6 +134,7 @@ public abstract class AnvilMinigameEventsMixin implements ArrowPosLerper {
 
     @WrapMethod(method = "reset()V")
     private static void resetLerped(Operation<Void> original) {
+        overgeared_attributes_1_20_1_forge_template$bonusHits = 0;
         overgeared_attributes_1_20_1_forge_template$arrowPosProjected = 50.0F;
         overgeared_attributes_1_20_1_forge_template$willMoveDown = false;
         original.call();
@@ -141,6 +142,7 @@ public abstract class AnvilMinigameEventsMixin implements ArrowPosLerper {
 
     @WrapMethod(method = "reset(Ljava/lang/String;)V")
     private static void resetLerped(String blueprintQuality, Operation<Void> original) {
+        overgeared_attributes_1_20_1_forge_template$bonusHits = 0;
         overgeared_attributes_1_20_1_forge_template$arrowPosProjected = 50.0F;
         overgeared_attributes_1_20_1_forge_template$willMoveDown = false;
         original.call(blueprintQuality);
