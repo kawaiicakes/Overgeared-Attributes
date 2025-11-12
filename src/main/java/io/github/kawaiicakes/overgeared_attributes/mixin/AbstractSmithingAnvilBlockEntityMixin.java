@@ -71,7 +71,9 @@ public abstract class AbstractSmithingAnvilBlockEntityMixin implements BonusHitC
     )
     private void resetFreeHits(ServerPlayer player, Operation<Void> original) {
         LOGGER.info("Resetting progress");
-        Objects.requireNonNull(player.getAttribute(SMITHING_BONUS.get())).removeModifiers();
+        if (player != null) {
+            Objects.requireNonNull(player.getAttribute(SMITHING_BONUS.get())).removeModifiers();
+        }
         this.overgeared_attributes_1_20_1_forge_template$setRemainingBonusHits(0);
         original.call(player);
     }
