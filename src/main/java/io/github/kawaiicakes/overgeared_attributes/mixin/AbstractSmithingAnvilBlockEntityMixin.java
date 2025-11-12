@@ -50,6 +50,9 @@ public abstract class AbstractSmithingAnvilBlockEntityMixin implements BonusHitC
     @WrapMethod(method = "increaseForgingProgress")
     private void increaseForgingProcess(Level pLevel, BlockPos pPos, BlockState pState, Operation<Void> original) {
             // FIXME: is there a way to do this without relying on (a potentially null) player?
+            //  Adding a null check just kicks the problem further down the line... it might be possible that
+            //  a player could be using the anvil but for some reason getPlayer() returns null. Not sure,
+            //  need to read where and when that field is updated
         if (
                 this.getPlayer().getAttributeValue(SMITHING_BONUS.get()) > 0
                 && overgeared_attributes_1_20_1_forge_template$updateFreeHits(
