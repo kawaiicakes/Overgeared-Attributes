@@ -17,7 +17,6 @@ public final class OvergearedAttributes {
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final String MOD_ID = "overgeared_attributes";
 
-    // TODO - add lerp to arrow in minigame
     public OvergearedAttributes() {
         MinecraftForge.EVENT_BUS.register(this);
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
