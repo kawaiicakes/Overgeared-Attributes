@@ -27,8 +27,6 @@ public abstract class AbstractSmithingAnvilBlockEntityMixin implements BonusHitC
 
     @Unique
     private boolean overgeared_attributes_1_20_1_forge_template$updateFreeHits(double hits) {
-        // FIXME: set up bonus hits on initiation of minigame so the change from 0 to 3 does not cause this to return true. this is what's causing the need for an extra hit
-        //  Note that the fix to this is harder than expected bc of fucky behaviour. Otherwise, this works perfectly fine
         final boolean toReturn = this.overgeared_attributes_1_20_1_forge_template$bonusHits != hits;
         LOGGER.info("Old: {}  New: {}", this.overgeared_attributes_1_20_1_forge_template$bonusHits, hits);
         if (toReturn) {
@@ -47,6 +45,14 @@ public abstract class AbstractSmithingAnvilBlockEntityMixin implements BonusHitC
         throw new AssertionError();
     }
 
+    @WrapMethod(method = "setPlayer")
+    private void setInitialFreeHits(Player player, Operation<Void> original) {
+        original.call(player);
+        this.overgeared_attributes_1_20_1_forge_template$bonusHits = (int) player.getAttributeValue(
+                SMITHING_BONUS.get()
+        );
+    }
+
     @WrapMethod(method = "increaseForgingProgress")
     private void increaseForgingProcess(Level pLevel, BlockPos pPos, BlockState pState, Operation<Void> original) {
             // FIXME: is there a way to do this without relying on (a potentially null) player?
@@ -54,7 +60,7 @@ public abstract class AbstractSmithingAnvilBlockEntityMixin implements BonusHitC
             //  a player could be using the anvil but for some reason getPlayer() returns null. Not sure,
             //  need to read where and when that field is updated
         if (
-                this.getPlayer().getAttributeValue(SMITHING_BONUS.get()) > 0
+                overgeared_attributes_1_20_1_forge_template$bonusHits > 0
                 && overgeared_attributes_1_20_1_forge_template$updateFreeHits(
                         this.getPlayer().getAttributeValue(SMITHING_BONUS.get())
                 )
@@ -74,6 +80,7 @@ public abstract class AbstractSmithingAnvilBlockEntityMixin implements BonusHitC
     )
     private void resetFreeHits(ServerPlayer player, Operation<Void> original) {
         LOGGER.info("Resetting progress");
+        // unlike with the fix note mentioned above, this might be fine...
         if (player != null) {
             Objects.requireNonNull(player.getAttribute(SMITHING_BONUS.get())).removeModifiers();
         }
