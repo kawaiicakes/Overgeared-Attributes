@@ -30,12 +30,15 @@ public abstract class AbstractSmithingAnvilBlockEntityMixin implements BonusHitC
 
     @Unique
     private boolean overgeared_attributes_1_20_1_forge_template$updateFreeHits(double hits) {
-        final boolean toReturn = this.overgeared_attributes_1_20_1_forge_template$bonusHits != hits;
+        final boolean initialCheck = this.overgeared_attributes_1_20_1_forge_template$bonusHits > 0;
+        final boolean hitsUpdated = this.overgeared_attributes_1_20_1_forge_template$bonusHits != hits;
+        final boolean toReturn = initialCheck && hitsUpdated;
+
         LOGGER.info("Old: {}  New: {}", this.overgeared_attributes_1_20_1_forge_template$bonusHits, hits);
         if (toReturn) {
             this.overgeared_attributes_1_20_1_forge_template$setRemainingBonusHits((int) hits);
         }
-        this.overgeared_attributes_1_20_1_forge_template$hasAppliedBonus = toReturn;
+        this.overgeared_attributes_1_20_1_forge_template$hasAppliedBonus = hitsUpdated;
         return toReturn;
     }
 
@@ -69,10 +72,8 @@ public abstract class AbstractSmithingAnvilBlockEntityMixin implements BonusHitC
             //  a player could be using the anvil but for some reason getPlayer() returns null. Not sure,
             //  need to read where and when that field is updated
         if (
-                overgeared_attributes_1_20_1_forge_template$bonusHits > 0
-                && overgeared_attributes_1_20_1_forge_template$updateFreeHits(
-                        this.getPlayer().getAttributeValue(SMITHING_BONUS.get())
-                )
+                overgeared_attributes_1_20_1_forge_template$updateFreeHits(
+                        this.getPlayer().getAttributeValue(SMITHING_BONUS.get()))
         ) {
             LOGGER.info("Free hit used in increase forging process");
             return;

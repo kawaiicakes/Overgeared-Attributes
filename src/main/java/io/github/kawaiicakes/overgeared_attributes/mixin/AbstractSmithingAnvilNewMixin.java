@@ -41,13 +41,12 @@ public abstract class AbstractSmithingAnvilNewMixin extends BaseEntityBlock {
         original.call();
     }
 
-    // TODO: add vfx
+    // TODO: add vfx on miss and counter for free hits + size bonus?
     @Unique
     private static SoundEvent overgeared_attributes_1_20_1_forge_template$bonusHitEffects() {
         return BELL_BLOCK;
     }
 
-    // FIXME: using all bonus hits causes all sounds to be the bell lol
     @WrapOperation(
             method = "use",
             at = @At(
