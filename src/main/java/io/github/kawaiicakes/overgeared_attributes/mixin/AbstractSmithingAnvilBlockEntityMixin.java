@@ -23,6 +23,9 @@ import static io.github.kawaiicakes.overgeared_attributes.OvergearedAttributes.S
 @Mixin(AbstractSmithingAnvilBlockEntity.class)
 public abstract class AbstractSmithingAnvilBlockEntityMixin implements BonusHitCounter {
     @Unique
+    private boolean overgeared_attributes_1_20_1_forge_template$hasAppliedBonus;
+
+    @Unique
     private int overgeared_attributes_1_20_1_forge_template$bonusHits;
 
     @Unique
@@ -32,12 +35,18 @@ public abstract class AbstractSmithingAnvilBlockEntityMixin implements BonusHitC
         if (toReturn) {
             this.overgeared_attributes_1_20_1_forge_template$setRemainingBonusHits((int) hits);
         }
+        this.overgeared_attributes_1_20_1_forge_template$hasAppliedBonus = toReturn;
         return toReturn;
     }
 
     @Override
     public void overgeared_attributes_1_20_1_forge_template$setRemainingBonusHits(int bonus) {
         this.overgeared_attributes_1_20_1_forge_template$bonusHits = bonus;
+    }
+
+    @Override
+    public boolean overgeared_attributes_1_20_1_forge_template$appliedBonusHit() {
+        return this.overgeared_attributes_1_20_1_forge_template$hasAppliedBonus;
     }
 
     @Shadow
