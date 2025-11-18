@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 import static net.minecraft.sounds.SoundEvents.BELL_BLOCK;
 
-@Mixin(AbstractSmithingAnvilNew.class)
+@Mixin(value = AbstractSmithingAnvilNew.class, remap = false)
 public abstract class AbstractSmithingAnvilNewMixin extends BaseEntityBlock {
     private AbstractSmithingAnvilNewMixin(Properties pProperties) {
         super(pProperties);

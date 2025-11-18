@@ -15,7 +15,7 @@ import java.util.Objects;
 import static io.github.kawaiicakes.overgeared_attributes.OvergearedAttributes.LOGGER;
 import static io.github.kawaiicakes.overgeared_attributes.OvergearedAttributes.SMITHING_BONUS;
 
-@Mixin(PacketSendCounterC2SPacket.class)
+@Mixin(value = PacketSendCounterC2SPacket.class, remap = false)
 public abstract class PacketSendCounterC2SPacketMixin {
     @WrapOperation(
             method = "lambda$handle$0",

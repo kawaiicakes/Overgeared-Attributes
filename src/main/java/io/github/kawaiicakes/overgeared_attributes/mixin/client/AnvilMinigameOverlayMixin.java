@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(AnvilMinigameOverlay.class)
+@Mixin(value = AnvilMinigameOverlay.class, remap = false)
 public abstract class AnvilMinigameOverlayMixin {
     // Really not sure that this is a good idea, but I don't know how else I can access its projected arrow pos @Unique otherwise
     @SuppressWarnings("InstantiationOfUtilityClass")

@@ -16,7 +16,7 @@ import java.util.Objects;
 import static io.github.kawaiicakes.overgeared_attributes.OvergearedAttributes.LOGGER;
 import static io.github.kawaiicakes.overgeared_attributes.OvergearedAttributes.SMITHING_BONUS;
 
-@Mixin(ModEvents.class)
+@Mixin(value = ModEvents.class, remap = false)
 public class ModEventsMixin {
     @WrapOperation(
             method = "resetMinigameForPlayer(Lnet/minecraft/server/level/ServerPlayer;)V",

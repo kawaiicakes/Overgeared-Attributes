@@ -20,7 +20,7 @@ import java.util.Objects;
 import static io.github.kawaiicakes.overgeared_attributes.OvergearedAttributes.LOGGER;
 import static io.github.kawaiicakes.overgeared_attributes.OvergearedAttributes.SMITHING_BONUS;
 
-@Mixin(AbstractSmithingAnvilBlockEntity.class)
+@Mixin(value = AbstractSmithingAnvilBlockEntity.class, remap = false)
 public abstract class AbstractSmithingAnvilBlockEntityMixin implements BonusHitCounter {
     @Unique
     private boolean overgeared_attributes_1_20_1_forge_template$hasAppliedBonus;

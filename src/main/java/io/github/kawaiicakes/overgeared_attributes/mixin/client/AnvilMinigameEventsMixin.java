@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static io.github.kawaiicakes.overgeared_attributes.OvergearedAttributes.*;
 
-@Mixin(AnvilMinigameEvents.class)
+@Mixin(value = AnvilMinigameEvents.class, remap = false)
 public abstract class AnvilMinigameEventsMixin implements ArrowPosLerper {
     @Shadow
     public static int perfectZoneStart;
