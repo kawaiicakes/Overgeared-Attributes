@@ -29,12 +29,14 @@ public abstract class AbstractSmithingAnvilNewMixin extends BaseEntityBlock {
             method = "use",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/stirdrem/overgeared/event/AnvilMinigameEvents;speedUp()V"
-            )
+                    target = "Lnet/stirdrem/overgeared/event/AnvilMinigameEvents;speedUp()V",
+                    remap = false
+            ),
+            remap = true
     )
     private void noSpeedForFreeHits(
             Operation<Void> original,
-            @Local(ordinal = 0) LocalRef<String> quality
+            @Local(name = "quality") LocalRef<String> quality
     ) {
         if (("skip").equals(quality.get())) return;
 
@@ -52,12 +54,13 @@ public abstract class AbstractSmithingAnvilNewMixin extends BaseEntityBlock {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/level/Level;playSound(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V"
-            )
+            ),
+            remap = true
     )
     public void modifySounds(
             Level instance, Player pPlayer, BlockPos pPos, SoundEvent pSound, SoundSource pCategory,
             float pVolume, float pPitch, Operation<Void> original,
-            @Local LocalRef<AbstractSmithingAnvilBlockEntity> anvil
+            @Local(name = "anvil") LocalRef<AbstractSmithingAnvilBlockEntity> anvil
     ) {
         @SuppressWarnings("RedundantCast")
         final BonusHitCounter counter = (BonusHitCounter) ((Object) anvil.get());
